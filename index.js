@@ -229,7 +229,7 @@ app.get('/hotels/sort/pricing', (req, res) => {
   if (sortType === 'high-to-low') {
     sortedHotels.sort(getSortedLTH);
   }
-  res.json(sortedHotels);
+  res.json({ hotels: sortedHotels });
 });
 
 // Endpoint 2: Get the hotels sorted based on their Ratings
@@ -251,7 +251,7 @@ app.get('/hotels/sort/rating', (req, res) => {
   if (sortType === 'high-to-low') {
     sortedHotels.sort(getSortedLTHRating);
   }
-  res.json(sortedHotels);
+  res.json({ hotels: sortedHotels });
 });
 
 // Endpoint 3: Get the Hotels sorted based on their Reviews
@@ -272,7 +272,7 @@ app.get('/hotels/sort/reviews', (req, res) => {
   if (sortType === 'most-to-least') {
     sortedHotels.sort(getSortedLTHRating);
   }
-  res.json(sortedHotels);
+  res.json({ hotels: sortedHotels });
 });
 
 // Endpoint 4: Filter the hotels based on the Hotel Amenity
@@ -291,7 +291,7 @@ function filterByAmenity(hotel, filterType) {
 app.get('/hotels/filter/amenity', (req, res) => {
   let filterType = req.query.amenity;
   let result = hotels.filter((hotel) => filterByAmenity(hotel, filterType));
-  res.json(result);
+  res.json({ hotels: result });
 });
 
 // Endpoint 5: Filter the hotels based on the selected Country
@@ -302,7 +302,7 @@ function filterByCountry(hotel, filterType) {
 app.get('/hotels/filter/country', (req, res) => {
   let filterType = req.query.country;
   let result = hotels.filter((hotel) => filterByCountry(hotel, filterType));
-  res.json(result);
+  res.json({ hotels: result });
 });
 
 // Endpoint 6: Filter the hotels based on the selected Category
@@ -313,13 +313,13 @@ function filterByCategory(hotel, filterType) {
 app.get('/hotels/filter/category', (req, res) => {
   let filterType = req.query.category;
   let result = hotels.filter((hotel) => filterByCategory(hotel, filterType));
-  res.json(result);
+  res.json({ hotels: result });
 });
 
 // Endpoint 7: Send all hotels
 // <http://localhost:3000/hotels>
 app.get('/hotels', (req, res) => {
-  res.json(hotels);
+  res.json({ hotels: hotels });
 });
 
 app.listen(port, () => {
